@@ -20,3 +20,32 @@
 
 # this method is supposed to save to a text file the person's name, 
 # their percentage_of_income and their tax_payable in an easy to read format.
+
+require 'json'
+def calculate_tax_payable(income)
+    case income
+    when income < 18_200
+    tax = 0
+    when income < 37_000
+    tax = (income - 18_200) * 0.19
+    when income < 87_000
+    tax = 3572 + ((income - 37_000) * 0.325)
+    when income < 180_000
+    tax = 19_822 + ((income - 87_000) * 0.37)
+    else
+    tax = 54_232 + ((income - 180_000) * 0.45)
+    end
+
+return { percentage_of_income: (100 * tax / income), tax_payable: tax }
+
+end
+
+hash = calculate_tax_payable(180101.00)
+
+def save_to_file(hash)
+    hash[:name] = "person"
+    file = File.open("income.json", "w") { |file| file << JSON.pretty_generate(hash) }
+
+end
+
+save_to_file(hash)
