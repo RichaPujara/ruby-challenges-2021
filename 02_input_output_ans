@@ -1,0 +1,16 @@
+loop do
+    puts "What is your name?"
+    name = gets.chomp
+    break if name == 'stop'
+
+    puts "Hi #{name}! How old are you?"
+    age = gets.chomp.to_i
+    break if age == "stop"
+
+    puts "Wow! You are #{age} years old. Congratulations!"
+    if age <= 100
+        puts "#{name}, in #{100 - age} years you will be 100 years old!"
+    else
+      puts "#{name}, you are super old"
+    end
+end
